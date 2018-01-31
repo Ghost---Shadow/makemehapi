@@ -23,7 +23,7 @@ describe('The server should return', () => {
     });
   });
   it('error on invalid request', (done) => {
-    request('http://localhost:8080/nope', (error, response, body) => {
+    request('http://localhost:8080/nope/nope', (error, response, body) => {
       expect(response.statusCode).toBe(404);
       done();
     });
