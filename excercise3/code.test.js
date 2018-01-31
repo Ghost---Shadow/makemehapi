@@ -17,7 +17,7 @@ describe('The server should return', () => {
   });
   it('index.html on valid request', (done) => {
     request('http://localhost:8080/', (error, response, body) => {
-      const fileString = fs.readFileSync('./index.html');
+      const fileString = fs.readFileSync('./excercise3/index.html').toString();
       expect(response.statusCode).toBe(200);
       expect(body).toBe(fileString);
       done();
