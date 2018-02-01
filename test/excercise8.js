@@ -6,17 +6,24 @@ const labScript = require('lab').script();
 const { it } = labScript;
 exports.lab = labScript;
 
-const server = require('../src/excercise7');
+const server = require('../src/excercise8');
 
-describe('Server should return data', () => {
-  it('/', (done) => {
-    supertest(server.listener)
-      .get('/')
-      .then((response) => {
-        expect(response.statusCode).toBe(404);
-        expect(response.body).to.equal('a');
-        done();
-      })
-      .catch(console.log);
-  });
+it('res code', (done) => {
+  supertest(server.listener)
+    .get('/')
+    .then((response) => {
+      expect(response.statusCode).to.equal(200);
+      done();
+    })
+    .catch(console.log);
+});
+
+it('content', (done) => {
+  supertest(server.listener)
+    .get('/')
+    .then((response) => {
+      expect(response.text).to.equal('Gur Chefhvg bs Uncv-arff');
+      done();
+    })
+    .catch(console.log);
 });
