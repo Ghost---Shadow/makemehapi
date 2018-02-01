@@ -17,3 +17,23 @@ it('res code', (done) => {
     })
     .catch(console.log);
 });
+
+it('one missing', (done) => {
+  supertest(server.listener)
+    .get('/chickens')
+    .then((response) => {
+      expect(response.statusCode).to.equal(404);
+      done();
+    })
+    .catch(console.log);
+});
+
+it('both missing', (done) => {
+  supertest(server.listener)
+    .get('/')
+    .then((response) => {
+      expect(response.statusCode).to.equal(404);
+      done();
+    })
+    .catch(console.log);
+});
