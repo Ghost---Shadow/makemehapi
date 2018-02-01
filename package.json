@@ -9,6 +9,7 @@
     "hapi": "^16.6.2",
     "inert": "^4.2.1",
     "request": "^2.83.0",
+    "rot13-transform": "^1.0.0",
     "supertest": "^3.0.0",
     "vision": "^4.1.1"
   },
