@@ -2,8 +2,11 @@ const Hapi = require('hapi');
 
 const server = new Hapi.Server();
 const prefix = 'Hello ';
-const port = 8080;
-// const port = Number(process.argv[2] || 8080);
+let port = 8080;
+
+if (!module.parent) {
+  port = Number(process.argv[2]);
+}
 
 server.connection({
   host: 'localhost',
@@ -16,11 +19,11 @@ function handler(request, reply) {
 
 server.route({ path: '/{name}', method: 'GET', handler });
 
-/*
-server.start(() => {
-  console.log('Server running at:', server.info.uri);
-});
-*/
+if (!module.parent) {
+  server.start(() => {
+    console.log('Server running at:', server.info.uri);
+  });
+}
 
 module.exports.server = server;
 module.exports.prefix = prefix;
