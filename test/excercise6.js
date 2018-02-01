@@ -16,3 +16,14 @@ it('Should get a valid response', (done) => {
     done();
   });
 });
+
+it('Should get a 404 response', (done) => {
+  const req = {
+    method: 'GET',
+    url: '127.0.0.1:8080/nope',
+  };
+  server.inject(req, (res) => {
+    expect(res.statusCode).to.equal(404); // Route not found
+    done();
+  });
+});
