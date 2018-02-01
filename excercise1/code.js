@@ -3,10 +3,10 @@ const Hapi = require('hapi');
 const server = new Hapi.Server();
 const okString = 'Hello hapi';
 
-let port = 8080
+let port = 8080;
 
 if (!module.parent) {
-  port = Number(process.argv[2] || 8080);
+  port = Number(process.argv[2]);
 }
 
 server.connection({
