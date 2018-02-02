@@ -2,13 +2,14 @@ const Hapi = require('hapi');
 
 const server = new Hapi.Server();
 const handlebars = require('handlebars');
+const path = require('path');
 
-const port = 8080;
-/*
+let port = 8080;
+
 if (!module.parent) {
   port = Number(process.argv[2]);
 }
-*/
+
 server.connection({
   host: 'localhost',
   port,
@@ -20,8 +21,8 @@ server.register(require('vision'), (err) => {
     engines: {
       html: handlebars,
     },
-    path: './src',
-    helpersPath: './helpers',
+    path: __dirname,
+    helpersPath: path.join(__dirname + './../helpers'),
   });
 
   server.route({
