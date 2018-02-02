@@ -75,6 +75,38 @@ it('Not guest, invalid accesstoken', (done) => {
   });
 });
 
+it('Guest, has additional info', (done) => {
+  const jsonObj = {
+    isGuest: true,
+    username: 'a',
+    accessToken: 'asdsd',
+  };
+  const req = {
+    method: 'POST',
+    url: '127.0.0.1:8080/login',
+    payload: JSON.stringify(jsonObj),
+  };
+  server.inject(req, (res) => {
+    expect(res.statusCode).to.equal(200);
+    done();
+  });
+});
+
+it('Guest, no additional info', (done) => {
+  const jsonObj = {
+    isGuest: true,
+  };
+  const req = {
+    method: 'POST',
+    url: '127.0.0.1:8080/login',
+    payload: JSON.stringify(jsonObj),
+  };
+  server.inject(req, (res) => {
+    expect(res.statusCode).to.equal(200);
+    done();
+  });
+});
+
 it('Not guest, username but not accesstoken', (done) => {
   const jsonObj = {
     isGuest: false,
