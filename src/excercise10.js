@@ -26,7 +26,7 @@ server.route({
         username: Joi.string().when('isGuest', { is: false, then: Joi.required() }),
         password: Joi.string().alphanum(),
         accessToken: Joi.string().alphanum(),
-      }).options({ allowUnknown: true }).without('password', 'accessToken'),
+      }).options({ allowUnknown: true }).xor('password', 'accessToken'),
     },
   },
 });

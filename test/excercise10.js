@@ -123,3 +123,21 @@ it('Not guest, username but not accesstoken', (done) => {
     done();
   });
 });
+
+
+// Not in problem statement
+it('Not guest, username but not password and accesstoken', (done) => {
+  const jsonObj = {
+    isGuest: false,
+    username: 'a'
+  };
+  const req = {
+    method: 'POST',
+    url: '127.0.0.1:8080/login',
+    payload: JSON.stringify(jsonObj),
+  };
+  server.inject(req, (res) => {
+    expect(res.statusCode).to.equal(400); // gives 200
+    done();
+  });
+});
